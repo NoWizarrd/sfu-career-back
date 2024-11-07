@@ -2,6 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import multer from 'multer'
 import cors from 'cors'
+import * as dotenv from 'dotenv'
 
 import { 
     loginValidation, 
@@ -20,9 +21,8 @@ import * as SkillController from './controllers/SkillController.js';
 import * as chatController from './controllers/ChatController.js';
 import handleValidationErrors from './utils/handleValidationErrors.js';
 
-
+dotenv.config()
 const dbHost = process.env.DB_HOST;
-
 mongoose.connect(dbHost).then(() => console.log('DB OK'))
     .catch((err) => console.log('DB error', err))
 
