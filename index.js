@@ -23,6 +23,8 @@ import handleValidationErrors from './utils/handleValidationErrors.js';
 
 dotenv.config()
 const dbHost = process.env.DB_HOST;
+const PORT = process.env.PORT
+
 mongoose.connect(dbHost).then(() => console.log('DB OK'))
     .catch((err) => console.log('DB error', err))
 
@@ -91,7 +93,7 @@ app.post('/chats/message', checkAuth, chatController.sendMessage);
 app.get('/chats/:chatId/messages', checkAuth, chatController.getMessages);
 app.get('/chats', checkAuth, chatController.getUserChats);
 
-app.listen(4444, (err) => {
+app.listen(PORT ? PORT : 4444, (err) => {
     if (err) {
         return console.log(err)
     } 
